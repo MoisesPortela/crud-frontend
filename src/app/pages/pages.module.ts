@@ -17,7 +17,6 @@ import { UtilModule } from "../util/util.module";
     imports: [
         PagesRoutingModule,
         UtilModule,
-        UtilModule
     ]
 })
 export class PagesModule { }

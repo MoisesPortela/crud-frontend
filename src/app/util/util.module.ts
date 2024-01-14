@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { TitleHeaderComponent } from './title-header/title-header.component';
 import { RouterModule } from '@angular/router';
+import { ProcuraComponent } from './procura/procura.component';
 
 @NgModule({
     declarations:[
-        TitleHeaderComponent
+        TitleHeaderComponent,
+        ProcuraComponent,
     ],
     exports:[
-        TitleHeaderComponent
+        TitleHeaderComponent,
+        ProcuraComponent,
     ],
     imports:[
         CommonModule,
