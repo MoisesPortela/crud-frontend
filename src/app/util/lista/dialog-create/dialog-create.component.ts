@@ -11,7 +11,8 @@ export class DialogCreateComponent implements OnInit{
   public drinkForm!: FormGroup;
   constructor( 
     private formBuilder:FormBuilder,
-    public dialogRef: MatDialogRef<DialogCreateComponent>
+    public dialogRef: MatDialogRef<DialogCreateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {nome:string,tipo:string,qtd:number,tamanho:string,preco:string},
     ){}
   ngOnInit(): void {
     this.drinkForm = this.formBuilder.group({
@@ -25,6 +26,9 @@ export class DialogCreateComponent implements OnInit{
   }
   checkInicial(){
     console.log()
+  }
+  criarBebida(){
+    
   }
   fechar(): void {
     this.dialogRef.close();

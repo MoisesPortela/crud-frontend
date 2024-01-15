@@ -1,3 +1,4 @@
+import { Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs';
@@ -14,8 +15,8 @@ export class ListaComponent implements OnInit{
   private setListaDrinks:{id:number,nome:string,tipo:string,qtd:number,tamanho:string,preco:string}[]=[];
   ultimaPagina:boolean=false;
   errorIsTrue:boolean=false;
-  bebida:{nome:string,tipo:string,qtd:number,tamanho:string,preco:string}= 
-    {nome:"AA",tipo:"VINHO",qtd:1,tamanho:"1l",preco:"8"}
+  bebida!:{nome:string,tipo:string,qtd:number,tamanho:string,preco:string}|null
+  closeDialog:any;
   size=0;
   page=0;
   totalPages=0;
@@ -29,9 +30,7 @@ export class ListaComponent implements OnInit{
 
   }
   criarBebida(drinks:any){
-    this.drinkService.createDrink(drinks).subscribe((resp)=>{
-      this.bebida.nome="AA"
-      console.log(resp);
+    this.drinkService.createDrink(drinks).subscribe(()=>{
     })
   }
   deleteDrink(id:number){
@@ -49,7 +48,6 @@ export class ListaComponent implements OnInit{
       }
       this.setListaDrinks=list;
       this.listaDrinks=this.setListaDrinks;
-      console.table(this.listaDrinks[0])
     })
   }
   searchName($event:any) {
@@ -83,15 +81,14 @@ export class ListaComponent implements OnInit{
   }
   adicionarDrink(): void {
     const dialogRef = this.dialog.open(DialogCreateComponent, {
-        minHeight: '400px',
-        minWidth: '600px',
-        
-      data: {name: "Criar Novo drink", animal: this.bebida},
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.bebida = result;
+    dialogRef.afterClosed().subscribe(data => {
+      data=data.value
+      data.nome.toLowerCase()
+      this.bebida=data
+      this.criarBebida(this.bebida);
+      this.bebida=null;
     });
   }
 }

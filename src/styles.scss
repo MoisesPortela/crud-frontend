@@ -8,20 +8,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html {
-    font-family: 'Roboto', sans-serif;
-    background: #262835;
-}
-
 main {
     max-width: 37.5rem;
     margin: 0 auto;
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 html,
 body {
     height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: #262835;
 }
 
 body {

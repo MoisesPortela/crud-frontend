@@ -1,14 +1,36 @@
-<h1 mat-dialog-title>Forms</h1>
+<h1 mat-dialog-title>Novo drink</h1>
 <div mat-dialog-content>
-    <form class="" [formGroup]="drinkForm">
+    <form class="form-group" [formGroup]="drinkForm">
+        <mat-form-field class="form-field">
+            <mat-label>Nome do drink</mat-label>
+            <input matInput formControlName="nome" nome="nome">
+        </mat-form-field>
+        <p></p>
         <mat-form-field>
-            <mat-label>Input</mat-label>
-            <input matInput>
+            <mat-label>Tipo do drink</mat-label>
+            <input matInput formControlName="tipo" tipo="tipo">
+        </mat-form-field>
+        <p></p>
+        <mat-form-field>
+            <mat-label>Quantidade do drink</mat-label>
+            <input matInput formControlName="qtd" qtd="qtd" type="number">
+        </mat-form-field>
+        <p></p>
+        <mat-form-field>
+            <mat-label>Tamanho do drink</mat-label>
+            <input matInput formControlName="tamanho" tamanho="tamanho">
+        </mat-form-field>
+        <p></p>
+        <mat-form-field>
+            <mat-label>Preço do drink</mat-label>
+            <input matInput formControlName="preco" preco="preco">
         </mat-form-field>
     </form>
 </div>
 
-<div mat-dialog-actions>
-    <button mat-button (click)="fechar()">criar</button>
-    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+<div mat-dialog-actions class="flex justify-between">
+    <div mat-dialog-actions>
+        <button mat-raised-button color="warn" (click)="fechar()">Cancelar</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="drinkForm" cdkFocusInitial>Ok</button>
+    </div>
 </div>

@@ -5,10 +5,12 @@ import { ProcuraComponent } from './procura/procura.component';
 import { ListaComponent } from './lista/lista.component';
 import { DialogCreateComponent } from './lista/dialog-create/dialog-create.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -17,7 +19,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         ProcuraComponent,
         ListaComponent,
         DialogCreateComponent,
-        
     ],
     exports:[
         TitleHeaderComponent,
@@ -31,9 +32,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         NgOptimizedImage,
         MatFormFieldModule,
         FormsModule,
-        MatDialogModule,
         ReactiveFormsModule,
         MatNativeDateModule,
+        MatDialogModule,
+        MatInputModule,
+        MatButtonModule,
     ]
 })
 export class UtilModule{}
