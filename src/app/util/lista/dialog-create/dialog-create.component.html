@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Forms</h1>
+<div mat-dialog-content>
+    <form class="" [formGroup]="drinkForm">
+        <mat-form-field>
+            <mat-label>Input</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="fechar()">criar</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+</div>

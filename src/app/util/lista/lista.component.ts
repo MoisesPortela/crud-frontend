@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs';
 import { DrinkService } from 'src/app/service/drink-service/drink-service.component';
+import { DialogCreateComponent } from './dialog-create/dialog-create.component';
 
 @Component({
   selector: 'app-lista',
@@ -10,33 +12,47 @@ import { DrinkService } from 'src/app/service/drink-service/drink-service.compon
 export class ListaComponent implements OnInit{
   listaDrinks:{id:number,nome:string,tipo:string,qtd:number,tamanho:string,preco:string}[]=[];
   private setListaDrinks:{id:number,nome:string,tipo:string,qtd:number,tamanho:string,preco:string}[]=[];
+  ultimaPagina:boolean=false;
   errorIsTrue:boolean=false;
+  bebida:{nome:string,tipo:string,qtd:number,tamanho:string,preco:string}= 
+    {nome:"AA",tipo:"VINHO",qtd:1,tamanho:"1l",preco:"8"}
   size=0;
   page=0;
   totalPages=0;
 
-  constructor( private drinkService:DrinkService){}
+  constructor( 
+    private drinkService:DrinkService,
+    public dialog:MatDialog){}
 
   ngOnInit(){
     this.loadAllDrinks(this.page);
-  }
 
+  }
+  criarBebida(drinks:any){
+    this.drinkService.createDrink(drinks).subscribe((resp)=>{
+      this.bebida.nome="AA"
+      console.log(resp);
+    })
+  }
+  deleteDrink(id:number){
+    this.drinkService.deleteDrinkById(id).pipe(take(1)).subscribe(()=>{
+      this.loadAllDrinks(this.page);
+    })
+  }
   loadAllDrinks(page:number){
     this.drinkService.listAllDrinks(page).pipe(take(1)).subscribe((list)=>{
       this.totalPages=list.totalPages-1;
-      console.log(this.totalPages);
       list=list.content
       for(let drink of list){
         drink.tipo=drink.tipo.toLowerCase();
         drink.preco= parseFloat(drink.preco).toFixed(2);
       }
       this.setListaDrinks=list;
-      console.table(this.setListaDrinks);
       this.listaDrinks=this.setListaDrinks;
+      console.table(this.listaDrinks[0])
     })
   }
   searchName($event:any) {
-    console.log(this.size)
     const drinkNameFilter = this.listaDrinks.filter((resp: any) => {
       return !resp.nome.indexOf($event.toLowerCase());
     });
@@ -55,7 +71,6 @@ export class ListaComponent implements OnInit{
       alert("Ultima página alcançada")
     }
     this.loadAllDrinks(this.page);
-
   }
   previousPage(){
     if(this.page>0){
@@ -65,5 +80,18 @@ export class ListaComponent implements OnInit{
     )
     this.loadAllDrinks(this.page);
 
+  }
+  adicionarDrink(): void {
+    const dialogRef = this.dialog.open(DialogCreateComponent, {
+        minHeight: '400px',
+        minWidth: '600px',
+        
+      data: {name: "Criar Novo drink", animal: this.bebida},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.bebida = result;
+    });
   }
 }

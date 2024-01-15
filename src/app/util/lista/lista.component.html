@@ -3,9 +3,14 @@
     <ng-template ngFor let-drink [ngForOf]="listaDrinks">
         <a class="drink" [routerLink]="" *ngIf="drink">
             <section class="drink__info">
-                <h2 class=" text-xl italic font-bold capitalize">
-                    {{drink.nome}} do tipo {{drink.tipo}}
-                </h2>
+                <div class="flex justify-between">
+                    <h2 class=" text-xl italic font-bold capitalize">
+                        {{drink.nome}} do tipo {{drink.tipo}}
+                    </h2>
+                    <button (click)="deleteDrink(drink.id)">
+                    <img class="ml-[10px] mr-[0px]" src="../../../assets/icons/x-close.svg" alt="Deletar">
+                </button>
+                </div>
                 <ul class="flex flex-col items-center flex-wrap pb-[5rem]">
                     <li class="flex rounded-[3.125rem] mb-[0.3rem] font-medium text-[0.7rem] bg-cinza justify-center text-[0.625rem]">
                         {{drink.qtd}} em estoque,
@@ -24,6 +29,6 @@
 </section>
 <div class="flex justify-between">
     <button class="btn3 bg-[#FF2400]" (click)="previousPage()">VOLTAR PÁGINA</button>
-    <button class="btn2 bg-[#4d77ff]">ADD BEBIDA</button>
-    <button class="btn bg-secondary" (click)="nextPage()">PRÓXIMA PÁGINA</button>
+    <button class="btn2 bg-[#4d77ff]" (click)="adicionarDrink()">ADD BEBIDA</button>
+    <button class="btn bg-secondary" (click)="nextPage()" [disabled]="ultimaPagina">PRÓXIMA PÁGINA</button>
 </div>

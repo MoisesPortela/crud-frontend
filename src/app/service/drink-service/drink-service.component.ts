@@ -10,13 +10,18 @@ import { BaseService } from '../base-service/base-service.component';
 })
 export class DrinkService extends BaseService{
 
-  private url:string = 'http://localhost:8080'
+  private url:string = 'http://localhost:8080/drinks'
   listAllDrinks(page:number):Observable<any>{
-    return this.get<any>(`${this.url}/drinks?size=5&page=${page}`)
+    return this.get<any>(`${this.url}?size=5&page=${page}`)
   }
-  
   listDrinkById(id:number):Observable<any> {
-    return this.get<any>(`${this.url}/drinks/${id}`)
+    return this.get<any>(`${this.url}/${id}`)
+  }
+  createDrink(drink:any):Observable<any>{
+    return this.post<any>(this.url,drink)
+  }
+  deleteDrinkById(id:any):Observable<any>{
+    return this.delete<any>(`${this.url}/${id}`)
   }
 
 
