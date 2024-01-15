@@ -1,4 +1,3 @@
-import { Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs';
@@ -11,17 +10,17 @@ import { DialogCreateComponent } from './dialog-create/dialog-create.component';
   styleUrls: ['./lista.component.scss']
 })
 export class ListaComponent implements OnInit{
-  listaDrinks:{id:number,nome:string,tipo:string,qtd:number,tamanho:string,preco:string}[]=[];
-  private setListaDrinks:{id:number,nome:string,tipo:string,qtd:number,tamanho:string,preco:string}[]=[];
+  listaDrinks:{nome:string,tipo:string,qtd:number,tamanho:string,preco:string}[]=[];
+  private setListaDrinks:{nome:string,tipo:string,qtd:number,tamanho:string,preco:string}[]=[];
   ultimaPagina:boolean=false;
   errorIsTrue:boolean=false;
-  bebida!:{nome:string,tipo:string,qtd:number,tamanho:string,preco:string}|null
+  bebida!:{nome:string,tipo:string,qtd:number,tamanho:string,preco:string}
   closeDialog:any;
   size=0;
   page=0;
   totalPages=0;
 
-  constructor( 
+  constructor(
     private drinkService:DrinkService,
     public dialog:MatDialog){}
 
@@ -29,12 +28,16 @@ export class ListaComponent implements OnInit{
     this.loadAllDrinks(this.page);
 
   }
+  updateDrink(drink:any){
+   this.drinkService.updateDrink(drink.id,drink).pipe(take(1)).subscribe(()=>{
+   }) 
+  }
   criarBebida(drinks:any){
-    this.drinkService.createDrink(drinks).subscribe(()=>{
+    this.drinkService.createDrink(drinks).pipe(take(1)).subscribe(()=>{
     })
   }
-  deleteDrink(id:number){
-    this.drinkService.deleteDrinkById(id).pipe(take(1)).subscribe(()=>{
+  deleteDrink(drink:any){
+    this.drinkService.deleteDrinkById(drink.id).pipe(take(1)).subscribe(()=>{
       this.loadAllDrinks(this.page);
     })
   }
@@ -79,6 +82,7 @@ export class ListaComponent implements OnInit{
     this.loadAllDrinks(this.page);
 
   }
+
   adicionarDrink(): void {
     const dialogRef = this.dialog.open(DialogCreateComponent, {
     });
@@ -88,7 +92,8 @@ export class ListaComponent implements OnInit{
       data.nome.toLowerCase()
       this.bebida=data
       this.criarBebida(this.bebida);
-      this.bebida=null;
+      this.listaDrinks.push(this.bebida)
+      this.bebida={nome:"",tipo:"",qtd:0,tamanho:"",preco:""};
     });
   }
 }

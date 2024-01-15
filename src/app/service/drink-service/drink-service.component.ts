@@ -20,6 +20,9 @@ export class DrinkService extends BaseService{
   createDrink(drink:any):Observable<any>{
     return this.post<any>(this.url,drink)
   }
+  updateDrink(drinkId: number, drink:any):Observable<any>{
+    return this.put<any>(`${this.url}/${drinkId}`,drink)
+  }
   deleteDrinkById(id:any):Observable<any>{
     return this.delete<any>(`${this.url}/${id}`)
   }

@@ -7,22 +7,26 @@
                     <h2 class=" text-xl italic font-bold capitalize">
                         {{drink.nome}} do tipo {{drink.tipo}}
                     </h2>
-                    <button (click)="deleteDrink(drink.id)">
-                    <img class="ml-[10px] mr-[0px]" src="../../../assets/icons/x-close.svg" alt="Deletar">
+                    <button (click)="deleteDrink(drink)">
+                    <img class="ml-[10px] mr-[0px]" src="../../../assets/icons/x-close.svg" alt="Deletar drink">
                 </button>
                 </div>
-                <ul class="flex flex-col items-center flex-wrap pb-[5rem]">
-                    <li class="flex rounded-[3.125rem] mb-[0.3rem] font-medium text-[0.7rem] bg-cinza justify-center text-[0.625rem]">
-                        {{drink.qtd}} em estoque,
-                    </li>
-                    <li class="flex rounded-[3.125rem] mb-[0.3rem] font-medium text-[0.7rem] bg-cinza justify-center text-[0.625rem]">
-                        {{drink.tamanho}} cada um
-                    </li>
-                    <li class="flex rounded-[3.125rem] mb-[0.3rem] font-medium text-[0.7rem] bg-cinza justify-center text-[0.625rem]">
-                        ${{drink.preco}} reais
-                    </li>
-
-                </ul>
+                <div>
+                    <ul class="flex flex-col items-center flex-wrap pb-[5rem]">
+                        <li class="flex rounded-[3.125rem] mb-[0.3rem] font-medium text-[0.7rem] bg-cinza justify-center text-[0.625rem]">
+                            {{drink.qtd}} em estoque,
+                        </li>
+                        <li class="flex rounded-[3.125rem] mb-[0.3rem] font-medium text-[0.7rem] bg-cinza justify-center text-[0.625rem]">
+                            {{drink.tamanho}} cada um
+                        </li>
+                        <li class="flex rounded-[3.125rem] mb-[0.3rem] font-medium text-[0.7rem] bg-cinza justify-center text-[0.625rem]">
+                            ${{drink.preco}} reais
+                        </li>
+                    </ul>
+                    <button (click)="updateDrink(drink)">
+                        <img class="mt-[-100px] ml-[240px]" src="../../../assets/icons/edit-03.svg" alt="Editar drink">
+                    </button>
+                </div>
             </section>
         </a>
     </ng-template>
