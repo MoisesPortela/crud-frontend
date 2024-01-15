@@ -1,0 +1,28 @@
+<app-procura (emmitSearch)="searchName($event)"></app-procura>
+<section class="listagem" *ngIf="!errorIsTrue">
+    <ng-template ngFor let-drink [ngForOf]="listaDrinks">
+        <a class="drink" [routerLink]="" *ngIf="drink">
+            <section class="drink__info">
+                <h2 class=" text-xl italic font-bold capitalize">
+                    {{drink.nome}} do tipo {{drink.tipo}}
+                </h2>
+                <ul class="flex flex-col items-center flex-wrap pb-[5rem]">
+                    <li class="flex rounded-[3.125rem] mb-[0.3rem] font-medium text-[0.7rem] bg-cinza justify-center text-[0.625rem]">
+                        {{drink.qtd}} em estoque,
+                    </li>
+                    <li class="flex rounded-[3.125rem] mb-[0.3rem] font-medium text-[0.7rem] bg-cinza justify-center text-[0.625rem]">
+                        {{drink.tamanho}} cada um
+                    </li>
+                    <li class="flex rounded-[3.125rem] mb-[0.3rem] font-medium text-[0.7rem] bg-cinza justify-center text-[0.625rem]">
+                        ${{drink.preco}} reais
+                    </li>
+
+                </ul>
+            </section>
+        </a>
+    </ng-template>
+</section>
+<div class="flex justify-between">
+    <button class="btn" (click)="previousPage()">VOLTAR PÁGINA</button>
+    <button class="btn" (click)="nextPage()">PRÓXIMA PÁGINA</button>
+</div>

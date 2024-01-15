@@ -1,0 +1,63 @@
+@import "../../config-scss/rem-calc.scss";
+@import "../../config-scss/variables.scss";
+$padding: rem-calc(20);
+:host {
+    .listagem {
+        display: flex;
+        justify-content: space-between;
+        padding: $padding 0;
+        flex-wrap: wrap;
+        .drink {
+            position: relative;
+            display: flex;
+            background: var(--branco);
+            width: calc(51% - 0.5rem);
+            height: rem-calc(160-16);
+            margin-bottom: rem-calc(10);
+            padding: $padding;
+            border-radius: rem-calc(10);
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+    }
+    .btn {
+        position: relative;
+        background-color: #ff6900;
+        padding: 14px 34px;
+        border-radius: 100px;
+        text-decoration: none;
+        color: var(--branco);
+        text-transform: uppercase;
+        font-family: Arial;
+        font-weight: bold;
+        font-size: 15px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(255, 105, 0, 0.4);
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        -ms-border-radius: 100px;
+        -o-border-radius: 100px;
+    }
+    .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: translateX(-250%) skewX(-30deg);
+        transition: transform 0.7s ease-in-out;
+        -webkit-transition: transform 0.7s ease-in-out;
+        -moz-transition: transform 0.7s ease-in-out;
+        -ms-transition: transform 0.7s ease-in-out;
+        -o-transition: transform 0.7s ease-in-out;
+    }
+    .btn:hover::before {
+        transform: translateX(200%) skewX(-30deg);
+        -webkit-transform: translateX(200%) skewX(-30deg);
+        -moz-transform: translateX(200%) skewX(-30deg);
+        -ms-transform: translateX(200%) skewX(-30deg);
+        -o-transform: translateX(200%) skewX(-30deg);
+    }
+}

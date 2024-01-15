@@ -1,3 +1,7 @@
+@use './app/config-scss/variables.scss';
+@use './app/config-scss/reset.scss';
+@use './app/config-scss/rem-calc.scss';
+
 /* You can add global styles to this file, and also import other style files */
 
 @tailwind base;
@@ -6,4 +10,10 @@
 html {
     font-family: 'Roboto', sans-serif;
     background: #262835;
+}
+
+main {
+    max-width: 37.5rem;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
