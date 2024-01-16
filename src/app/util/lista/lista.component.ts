@@ -106,18 +106,17 @@ export class ListaComponent implements OnInit{
     dialogRef.afterClosed().subscribe(data => {
       data=data.value
       data.nome.toLowerCase()
-      this.bebida=data
-      this.updateDrink(drink.id,this.bebida);
+      console.log(drink.id);
+      this.updateDrink(drink.id,data);
       for(let bebida of this.listaDrinks){
         if(bebida.id==drink.id){
-          drink.nome=bebida.nome;
-          drink.tipo=bebida.tipo;
-          drink.qtd=bebida.qtd;
-          drink.tamanho=bebida.tamanho;
-          drink.preco=bebida.preco;
+          drink.nome=data.nome;
+          drink.tipo=data.tipo;
+          drink.qtd=data.qtd;
+          drink.tamanho=data.tamanho;
+          drink.preco=data.preco;
         }
       }
-      this.bebida={nome:"",tipo:"",qtd:0,tamanho:"",preco:""};
     });
   }
 }

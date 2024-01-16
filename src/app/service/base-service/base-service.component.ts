@@ -10,7 +10,7 @@ export abstract class BaseService{
     return this.http.post<T>(`${resource}`,drink);
   }
   protected put<T>(resource:string, drink:any, params?:HttpParams,headers?:HttpHeaders){
-    return this.http.post<T>(`${resource}`,{params, headers},drink );
+    return this.http.put<T>(`${resource}`,{params, headers},drink );
   }
   protected delete<T>(resource:string,params?:HttpParams,headers?:HttpHeaders){
     return this.http.delete<T>(`${resource}`,{params, headers});
