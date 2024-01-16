@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { UpdateDialogComponent } from './lista/update-dialog/update-dialog.component';
 
 
 @NgModule({
@@ -19,12 +20,14 @@ import {MatButtonModule} from '@angular/material/button';
         ProcuraComponent,
         ListaComponent,
         DialogCreateComponent,
+        UpdateDialogComponent
     ],
     exports:[
         TitleHeaderComponent,
         ProcuraComponent,
         ListaComponent,
-        DialogCreateComponent
+        DialogCreateComponent,
+        UpdateDialogComponent
     ],
     imports:[
         CommonModule,

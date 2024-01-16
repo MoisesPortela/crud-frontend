@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Novo drink</h1>
+<div mat-dialog-content>
+    <form class="form-group" [formGroup]="drinkForm">
+        <mat-form-field class="form-field">
+            <mat-label>Nome do drink</mat-label>
+            <input matInput formControlName="nome" nome="data.nome">
+        </mat-form-field>
+        <p></p>
+        <mat-form-field>
+            <mat-label>Tipo do drink</mat-label>
+            <input matInput formControlName="tipo" tipo="data.tipo">
+        </mat-form-field>
+        <p></p>
+        <mat-form-field>
+            <mat-label>Quantidade do drink</mat-label>
+            <input matInput formControlName="qtd" qtd="qtd" type="data.qtd">
+        </mat-form-field>
+        <p></p>
+        <mat-form-field>
+            <mat-label>Tamanho do drink</mat-label>
+            <input matInput formControlName="tamanho" tamanho="data.tamanho">
+        </mat-form-field>
+        <p></p>
+        <mat-form-field>
+            <mat-label>Preço do drink</mat-label>
+            <input matInput formControlName="preco" preco="data.preco">
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions class="flex justify-between">
+    <div mat-dialog-actions>
+        <button mat-raised-button color="warn" (click)="fechar()">Cancelar</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+    </div>
+</div>

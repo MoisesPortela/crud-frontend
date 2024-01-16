@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs';
 import { DrinkService } from 'src/app/service/drink-service/drink-service.component';
 import { DialogCreateComponent } from './dialog-create/dialog-create.component';
+import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 
 @Component({
   selector: 'app-lista',
@@ -10,7 +11,7 @@ import { DialogCreateComponent } from './dialog-create/dialog-create.component';
   styleUrls: ['./lista.component.scss']
 })
 export class ListaComponent implements OnInit{
-  listaDrinks:{nome:string,tipo:string,qtd:number,tamanho:string,preco:string}[]=[];
+  listaDrinks:any[]=[];
   private setListaDrinks:{nome:string,tipo:string,qtd:number,tamanho:string,preco:string}[]=[];
   ultimaPagina:boolean=false;
   errorIsTrue:boolean=false;
@@ -28,7 +29,7 @@ export class ListaComponent implements OnInit{
     this.loadAllDrinks(this.page);
 
   }
-  updateDrink(drink:any){
+  updateDrink(id:number,drink:any){
    this.drinkService.updateDrink(drink.id,drink).pipe(take(1)).subscribe(()=>{
    }) 
   }
@@ -93,6 +94,29 @@ export class ListaComponent implements OnInit{
       this.bebida=data
       this.criarBebida(this.bebida);
       this.listaDrinks.push(this.bebida)
+      this.bebida={nome:"",tipo:"",qtd:0,tamanho:"",preco:""};
+    });
+  }
+  atualizarDrink(drink:any): void {
+    let id = this.listaDrinks.indexOf(drink)
+    const dialogRef = this.dialog.open(UpdateDialogComponent, {
+      data: {nome:drink.nome,tipo:drink.tipo,qtd:drink.qtd,tamanho:drink.tamanho,preco:drink.tamanho}
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      data=data.value
+      data.nome.toLowerCase()
+      this.bebida=data
+      this.updateDrink(drink.id,this.bebida);
+      for(let bebida of this.listaDrinks){
+        if(bebida.id==drink.id){
+          drink.nome=bebida.nome;
+          drink.tipo=bebida.tipo;
+          drink.qtd=bebida.qtd;
+          drink.tamanho=bebida.tamanho;
+          drink.preco=bebida.preco;
+        }
+      }
       this.bebida={nome:"",tipo:"",qtd:0,tamanho:"",preco:""};
     });
   }
